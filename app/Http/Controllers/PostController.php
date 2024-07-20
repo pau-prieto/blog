@@ -29,7 +29,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: Implement
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        Post::create($request->all());
+        return redirect()->route('posts.index');
     }
 
     /**
