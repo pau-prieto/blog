@@ -49,9 +49,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //TODO: Implement
+        $post = Post::find($id);
+        return view('Posts.edit', compact('post'));
     }
 
     /**
@@ -59,7 +60,15 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post = Post::find($id);
+        $post->update($request->all());
+
+        return redirect()->route('posts.index');
     }
 
     /**
