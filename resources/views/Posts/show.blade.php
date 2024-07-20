@@ -8,4 +8,9 @@
       <p>ID: {{ $post->id }}</p>
       <p>{{ $post->content }}</p>
    </ul>
+   <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
 @endsection
