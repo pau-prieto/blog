@@ -68,7 +68,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->update($request->all());
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -80,5 +80,29 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index');
+    }
+
+    /**
+     * Increment the specified resource.
+     */
+    public function like($id)
+    {
+        $post = Post::find($id);
+        $post->increment('likes');
+
+        return back();
+    }
+
+    /**
+     * Decrement the specified resource.
+     */
+    public function unlike($id)
+    {
+        $post = Post::find($id);
+        if ($post->likes > 0) {
+            $post->decrement('likes');
+        }
+
+        return back();
     }
 }

@@ -5,17 +5,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <style>
-            .btn-pastel-blue {
-                background-color: #aec6cf;
-                color: #2c3e50;
-            }
-            .btn-pastel-pink {
-                background-color: #fcbfcb;
-                color: #2c3e50;
-            }
-            .btn-pastel-green {
-                background-color: #c1e1c1;
-                color: #2c3e50;
+            .content-container {
+                max-width: 800px;
+                padding: 20px;
+                margin: auto;
             }
         </style>
     </head>
@@ -32,7 +25,7 @@
                             <a class="nav-link" href="{{ route('posts.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.create') }}">Create Post</a>
+                            <a class="nav-link" href="{{ route('posts.create') }}" style="color: #ffffff; background-color: #4649af; font-weight: bold; padding: 0.5rem 1rem;">Create Post</a>
                         </li>
                     </ul>
                 </div>
@@ -42,4 +35,5 @@
             @yield('content')
         </div>
     </body>
+       
 </html>
