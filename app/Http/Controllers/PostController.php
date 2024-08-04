@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -12,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-       $posts = Post::all();
+       $posts = Auth::user()->post;
        return view('Posts.index', compact('posts'));
     }
 
@@ -43,6 +44,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if(Auth::id() != $post->user_id){
+            abort(403);
+        }
+        
         return view('Posts.show', compact('post'));
     }
 
@@ -52,7 +57,13 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        if(Auth::id() != $post->user_id){
+            abort(403, "You do not have permission to edit this post.");
+        }
+        
         return view('Posts.edit', compact('post'));
+        
     }
 
     /**
@@ -66,6 +77,11 @@ class PostController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        if(Auth::id() != $post->user_id) {
+            abort(403, "You do not have permission to update this post.");
+        }
+
         $post->update($request->all());
 
         return redirect()->route('posts.show', $post->id);
@@ -77,8 +93,12 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->delete();
 
+        if (Auth::id() != $post->user_id) {
+            abort(403, "You do not have permission to delete this post.");
+        }
+
+        $post->delete();
         return redirect()->route('posts.index');
     }
 
