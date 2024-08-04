@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [PostController::class, 'index'])->name('home');
     Route::resource('/posts', PostController::class);
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
     Route::post('/posts/{post}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
