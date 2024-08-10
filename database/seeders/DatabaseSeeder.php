@@ -14,15 +14,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)
-        ->has(Post::factory(10))
-        ->create();
+        // Create the initial admin user
+        User::factory()->admin()->create();
+
+        // Create additional users with random roles
+        $users = User::factory(5)->create();
+
+
+        // Create posts assigned only to authors
+        $users->each(function ($user) {
+            if ($user->role === 'author') {
+                Post::factory(10)->create(['user_id' => $user->id]);
+            }
+        });
+
+        // // Create additional users with random roles (user/author) and posts
+        // User::factory(5)
+        // ->has(Post::factory(10))
+        // ->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
+
         //$this->call(PostSeeder::class);
     }
 }
