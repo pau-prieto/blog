@@ -1,8 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.admin_layout')
 
 @section('content')
-    <h1 class="mb-4 text-center" style="font-family: 'Times New Roman', serif; font-size: 42px; font-weight: 400;">Blog Posts</h1>
-    <div class="row content-container">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Blog Posts</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <a href="{{  route('posts.create') }}" class="btn btn-sm btn-outline-secondary">Create Post</a>
+            </div>
+        </div>
+    </div>
+    
+    <div>
         @foreach ($posts as $post)
             <div class="col-md-12 mb-4">
                 <div class="card">
