@@ -17,13 +17,9 @@ class AuthorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
-        // Check if the authenticated user has the 'admin' role
-        if (Auth::user()->role !== 'author') {
-            return redirect()->route('home')->with('unauthorised', 'You are unauthorised to access this page.');
+        // Check if the authenticated user has the 'author' role
+        if (!Auth::check() && Auth::user()->role !== 'author') {
+            return redirect()->route('admin.posts.index')->with('error', 'You do not have permission to update this post.');
         }
 
         // Allow request

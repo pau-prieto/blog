@@ -10,9 +10,6 @@
     <title>Dashboard</title>
 
     {{-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/"> --}}
-
-    
-
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"> --}}
 
 {{-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -150,7 +147,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    @include('layouts.includes.navbar')
+    @include('layouts.includes.admin_navbar')
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         @yield('content')

@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.author')
 
 @section('content')  
     <div class="content-container">
-        <a href="{{ route('posts.show', $post->id) }}" class="nav-link">Back</a>
+        <a href="{{ route('author.posts.show', $post->id) }}" class="nav-link">Back</a>
         <h1 class="mb-4 text-center" style="font-family: 'Times New Roman', serif; font-size: 42px; font-weight: 400;">Edit Blog Post</h1>
-        <form action="{{ route('posts.update', $post->id) }}" method="POST">
+        <form action="{{ route('author.posts.update', $post->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

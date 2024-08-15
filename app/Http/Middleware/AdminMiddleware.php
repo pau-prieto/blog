@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
@@ -16,13 +17,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // If user authenticated and role is Admin
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            // Allow request
-            return $next($request);
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('admin.posts.index')->with('error', 'You do not have permission to update this post.');
         }
-
-        // User is not authorised
-        return redirect()->route('home')->with('unauthorized', 'You are unauthorized to access this page.');
+        return $next($request);
     }
 }

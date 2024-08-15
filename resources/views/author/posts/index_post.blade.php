@@ -1,15 +1,14 @@
-@extends('layouts.admin_layout')
+@extends('layouts.author')
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Blog Posts</h1>
+        <h1 class="h2">My Blog Posts</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <a href="{{  route('posts.create') }}" class="btn btn-sm btn-outline-secondary">Create Post</a>
+                <a href="{{  route('author.posts.create') }}" class="btn btn-sm btn-outline-secondary">Create Post</a>
             </div>
         </div>
     </div>
-    
     <div>
         @foreach ($posts as $post)
             <div class="col-md-12 mb-4">
@@ -19,7 +18,7 @@
                         <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
                         <div class="d-flex justify-content-between">
                             <p class="mb-1"><strong>Likes:</strong> {{ $post->likes }}</p>
-                            <a href="{{ route('posts.show', $post->id) }}" class="text-reset text-decoration-none">Read more</a>
+                            <a href="{{ route('author.posts.show', $post->id) }}" class="text-reset text-decoration-none">Read more</a>
                         </div>
                     </div>
                 </div>
