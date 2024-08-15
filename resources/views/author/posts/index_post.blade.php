@@ -17,7 +17,6 @@
                         <h5 class="card-title font-weight-bold">{{ $post->title }}</h5>
                         <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
                         <div class="d-flex justify-content-between">
-                            <p class="mb-1"><strong>Likes:</strong> {{ $post->likes }}</p>
                             <a href="{{ route('author.posts.show', $post->id) }}" class="text-reset text-decoration-none">Read more</a>
                         </div>
                     </div>

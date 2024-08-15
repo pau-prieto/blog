@@ -27,8 +27,6 @@ Route::group(['middleware' => [AdminMiddleware::class]], function () {
         ]);
         Route::resource('/users', UserController::class);
         Route::get('/admin/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
-        Route::post('/posts/{post}/likes', [AdminPostController::class, 'like'])->name('admin.posts.likes');
-        Route::post('/posts/{post}/unlikes', [AdminPostController::class, 'unlike'])->name('admin.posts.unlikes');
     });
 });
 
@@ -45,8 +43,6 @@ Route::group(['middleware' => [AuthorMiddleware::class]], function () {
             'update' => 'author.posts.update',
             'destroy' => 'author.posts.destroy',
         ]);
-        Route::post('/posts/{post}/likes', [AuthorPostController::class, 'like'])->name('author.posts.likes');
-        Route::post('/posts/{post}/unlikes', [AuthorPostController::class, 'unlike'])->name('author.posts.unlikes');
     });
 });
 

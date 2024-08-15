@@ -102,28 +102,4 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('author.posts.index');
     }
-
-    /**
-     * Increment the specified resource.
-     */
-    public function like($id)
-    {
-        $post = Post::find($id);
-        $post->increment('author.posts.likes');
-
-        return back();
-    }
-
-    /**
-     * Decrement the specified resource.
-     */
-    public function unlike($id)
-    {
-        $post = Post::find($id);
-        if ($post->likes > 0) {
-            $post->decrement('author.posts.likes');
-        }
-
-        return back();
-    }
 }

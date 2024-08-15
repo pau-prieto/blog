@@ -81,34 +81,10 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if (!$post) {
-            return redirect()->route('posts.index_post')->with('error', 'Post not found');
+            return redirect()->route('admin.posts.index')->with('error', 'Post not found');
         }
         $post->delete();
 
-        return redirect()->route('posts.index_post')->with('success', 'Post deleted successfully!');
-    }
-
-    /**
-     * Increment the specified resource.
-     */
-    public function like($id)
-    {
-        $post = Post::find($id);
-        $post->increment('posts.likes');
-
-        return back();
-    }
-
-    /**
-     * Decrement the specified resource.
-     */
-    public function unlike($id)
-    {
-        $post = Post::find($id);
-        if ($post->likes > 0) {
-            $post->decrement('posts.likes');
-        }
-
-        return back();
+        return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
     }
 }

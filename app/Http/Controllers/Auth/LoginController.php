@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -32,12 +33,22 @@ class LoginController extends Controller
 
         switch ($role) {
             case 'admin':
-                return '/dashboard';
+                return '/admin/dashboard';
             case 'author':
-                return '/dashboard';
+                return '/author/dashboard';
             default:
-                return '/home';
+                return '/dashboard';
         }
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected function loggedOut(Request $request)
+    {
+        return redirect('/login');
     }
 
     /**
