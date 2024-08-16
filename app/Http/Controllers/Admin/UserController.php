@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.users.show_user', compact('user'));
     }
 
@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         return view('admin.users.edit_user', compact('user'));
     }
@@ -71,17 +71,36 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validate the request data
         $request->validate([
-            'name' => 'required|string|min:3|max:30',
-            'email' => 'required|string|email|max:50|unique:users,email, ' . $id,
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:user,author,admin',
+            'name' => 'sometimes|string|min:3|max:30',
+            'email' => 'sometimes|string|email|max:50|unique:users' . $id,
+            'password' => 'sometimes|nullable|string|min:8|confirmed|required_with:password_confirmation',
+            'role' => 'sometimes|in:user,author,admin',
         ]);
 
-        $user = User::find($id);
-        $user->update($request->all());
+        // Find the user
+        $user = User::findOrFail($id);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully!');
+        // Update fields
+        if ($request->filled('name')) {
+            $user->name = $request->name;
+        }
+        if ($request->filled('email')) {
+            $user->email = $request->email;
+        }
+        if ($request->filled('password')) {
+            // Hash the password before saving
+            $user->password = bcrypt($request->password);
+        }
+        if ($request->filled('role')) {
+            $user->role = $request->role;
+        }
+
+        // Save the updated user data
+        $user->save();
+
+        return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully!');
     }
 
     /**
@@ -89,7 +108,7 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.users.delete_user', compact('user'));
     }
 
@@ -99,7 +118,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully!');

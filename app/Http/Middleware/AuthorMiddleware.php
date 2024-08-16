@@ -18,8 +18,8 @@ class AuthorMiddleware
     {
 
         // Check if the authenticated user has the 'author' role
-        if (!Auth::check() && Auth::user()->role !== 'author') {
-            return redirect()->route('admin.posts.index')->with('error', 'You do not have permission to update this post.');
+        if (!Auth::check() || Auth::user()->role !== 'author') {
+            return redirect()->route('login')->with('error', 'You do not have permission to update this post.');
         }
 
         // Allow request

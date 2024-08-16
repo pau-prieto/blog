@@ -17,8 +17,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            return redirect()->route('admin.posts.index')->with('error', 'You do not have permission to update this post.');
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('login')->with('error', 'You do not have permission to update this post.');
         }
         return $next($request);
     }
