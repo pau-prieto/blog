@@ -2,8 +2,6 @@
 
 ## Enhanced Blog Application with Authentication and Admin Panel
 
-## Github Repository
-
 [Paula's blog-Enhanced version](https://github.com/pau-prieto/blog/tree/feature/auth-admin-panel)
 
 ## Student Information
@@ -60,7 +58,7 @@
 4. **Design Consistency**:
     - Keeping the design consistent across all the blade views was time consuming and challenging. It required balancing different needs of each user while ensuring everything looked cohesive.
 5. **Cross-Functionality Bugs**:
-    - Adapting features from the admin panel to the author panel led to some unexpected bugs. Sorting these out was a bit stressful, but it improved my debugging skills. Most of the time it was just due to fogetting to update a route somethwhere from admin to author.
+    - Adapting features from the admin panel to the author panel led to some unexpected bugs. Sorting these out was a bit stressful, but it improved my debugging skills. Most of the time it was just due to fogetting to update a route somewhere from admin to author.
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
