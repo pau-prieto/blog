@@ -112,7 +112,6 @@ class UserController extends Controller
         return view('admin.users.delete_user', compact('user'));
     }
 
-
     /**
      * Remove the specified resource from storage.
      */

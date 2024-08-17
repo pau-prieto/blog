@@ -7,14 +7,20 @@
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('admin.posts.index') }}">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('admin.dashboard') }}">
               <svg class="bi"><use xlink:href="#house-fill"/></svg>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('admin.posts.index') }}">
+              <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               Manage Posts
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ route('users.index') }}">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+              <svg class="bi"><use xlink:href="#people"/></svg>
               Manage Users
             </a>
           </li>
@@ -22,7 +28,12 @@
 
         <hr class="my-3">
         <ul class="nav flex-column mb-auto">
-
+          {{-- <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
+              Settings
+            </a>
+          </li> NOT YET IMPLEMENTED, WILL ALLOW MANAGEMENT OF OWN USER SETTINGS --}}
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

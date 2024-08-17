@@ -1,24 +1,47 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="mx-auto" style="max-width: 800px; padding: 20px;">
-        <a href="{{ route('admin.posts.index') }}" class="nav-link">Back</a>
-        <h1 class="mb-4 text-center" style="font-family: 'Times New Roman', serif; font-size: 42px; font-weight: 400;">Blog Post Details</h1>
-        <h3 class="font-weight-bold">{{ $post->title }}</h3>
-        <p>Post ID: {{ $post->id }}</p>
-        <p>{{ $post->content }}</p>
-        <hr>
-        <div class="d-flex justify-content-between">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card mt-4">
+                <div class="card-header text-center">
+                    <h1 class="font-weight-bold">{{ $post->title }}</h1>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Post ID:</strong></span>
+                            <span style="margin-left: 20px;">{{ $post->_id }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>User ID:</strong></span>
+                            <span style="margin-left: 20px;">{{ $post->user_id }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Created At:</strong></span>
+                            <span style="margin-left: 20px;">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Updated At:</strong></span>
+                            <span style="margin-left: 20px;">{{ \Carbon\Carbon::parse($post->updated_at)->format('d M, Y') }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span><strong>Content:</strong></span>
+                            <p>{{ $post->content }}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Back</a>
+                    <div class="d-flex">
+                        <a href="{{ route('admin.posts.edit', $post->_id) }}" class="btn btn-primary me-2">Edit</a>
+                        <a href="{{ route('admin.posts.delete', $post->_id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="mt-4 d-flex justify-content-between mx-auto" style="max-width: 800px;">
-        <div class="d-flex">
-            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn mx-3" style="background-color: #a6e7a6">Edit</a>
-            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn mx-3" style="background-color: #f596a9">Delete</button>
-            </form>
-        </div>
-    </div>
+</div>
 @endsection

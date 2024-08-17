@@ -5,25 +5,38 @@
         <h1 class="h2">User Management</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <a href="{{  route('users.create') }}" class="btn btn-sm btn-outline-secondary">Create new user</a>
+                <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">CREATE USER</a>
             </div>
         </div>
     </div>
 
-    <div>
-        @foreach ($users as $user)
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold">{{ $user->name }}</h5>
-                    <p class="card-text">{{ $user->email }}</p>
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-1">Role: {{ $user->role }}</p>
-                        <a href="{{ route('users.show', $user->id) }}" class="text-reset text-decoration-none">View</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ ucfirst($user->role) }}</td>
+                        <td class="text-center">
+                             {{-- View Button --}}
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                             {{-- Edit Button --}}
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary mx-3">Edit</a>
+                             {{-- Delete Button --}}
+                            <a href="{{ route('users.delete', $user->id) }}" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection

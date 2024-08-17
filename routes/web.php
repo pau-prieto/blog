@@ -15,7 +15,7 @@ Route::get('/', function () {
 // Admin routes
 Route::group(['middleware' => [AdminMiddleware::class]], function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/dashboard', [AdminPostController::class, 'index'])->name('admin.dashboard');
+        Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
         Route::resource('/posts', AdminPostController::class)->names([
             'index' => 'admin.posts.index',
             'create' => 'admin.posts.create',
@@ -25,15 +25,16 @@ Route::group(['middleware' => [AdminMiddleware::class]], function () {
             'update' => 'admin.posts.update',
             'destroy' => 'admin.posts.destroy',
         ]);
+        Route::get('/posts/{post}/delete', [AdminPostController::class, 'delete'])->name('admin.posts.delete');
         Route::resource('/users', UserController::class);
-        Route::get('/admin/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
+        Route::get('/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
     });
 });
 
 // Author routes
 Route::group(['middleware' => [AuthorMiddleware::class]], function () {
     Route::prefix('author')->group(function () {
-        Route::get('/dashboard', [AuthorPostController::class, 'index'])->name('author.dashboard');
+        Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('author.dashboard');
         Route::resource('/posts', AuthorPostController::class)->names([
             'index' => 'author.posts.index',
             'create' => 'author.posts.create',

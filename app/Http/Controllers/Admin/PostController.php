@@ -36,7 +36,7 @@ class PostController extends Controller
         ]);
 
         Post::create($request->all());
-        return redirect()->route('posts.index_post');
+        return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
 
         return view('admin.posts.edit_post', compact('post'));
     }
@@ -67,10 +67,19 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->update($request->all());
 
-        return redirect()->route('posts.show_post', $post->id)->with('success', 'Post updated successfully!');
+        return redirect()->route('admin.posts.show', $post->id)->with('success', 'Post updated successfully!');
+    }
+
+    /**
+     * Display the confirmation page for deleting the specified user.
+     */
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('admin.posts.delete_post', compact('post'));
     }
 
     /**
@@ -78,7 +87,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
 
         if (!$post) {
             return redirect()->route('admin.posts.index')->with('error', 'Post not found');
