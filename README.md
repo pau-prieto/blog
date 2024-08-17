@@ -1,8 +1,10 @@
 # My Laravel Blog Project
 
+## Enhanced Blog Application with Authentication and Admin Panel
+
 ## Github Repository
 
-[Paula's blog](https://github.com/pau-prieto/blog)
+[Paula's blog-Enhanced version](https://github.com/pau-prieto/blog/tree/feature/auth-admin-panel)
 
 ## Student Information
 
@@ -10,59 +12,55 @@
 -   **Student ID:** 220111946
 -   **Course:** COSC560 Advanced Web Development
 -   **Unit Coordinator:** Muhammad Ibrahim
+-   **Assessment:** Assessment 2
 
 ## Approach
 
-### Initial Setup
+### Setup and Initialisation
 
-1. Installed Laravel and configured the environment.
-2. Set up the database and configured the necessary environment variables.
-3. Created project on GitHub.
+1. **Project Setup**: Created a new branch `feature/auth-admin-panel` from the previous assessment’s blog application.
+2. **MongoDB Integration**: Configured MongoDB with Laravel for data storage.
+3. **Laravel UI and Authentication**:
+    - Installed Laravel UI package and set up authentication with Bootstrap.
+    - Integrated Bootstrap styling across the application for a consistent look and feel using a Bootstrap [Dashboard template](https://getbootstrap.com/docs/5.3/examples/) example.
+4. **Role-Based Access Control and Middleware**:
+    - Added roles (admin, author, user) to the user model.
+    - Created `AdminMiddleware` and `AuthorMiddleware` to restrict access based on user roles.
+    - Applied the middleware to secure admin and author-specific routes.
 
-### Develop Core and Bonus Features
+### Routes, Controllers, and Views
 
-1. Defined routes for posts in web.php
-2. Created models and migrations for posts table.
-3. Created factory and seeder for posts data.
-4. Created PostController and implemented CRUD functionality.
-5. Implemented master layout and blade views.
-6. Implemented the like and unlike functionality with appropriate routes and controller methods.
-7. Tested each functionality after each important step.
-8. Pushed code to origin using git for each important change.
-
-### User Interface Design
-
-1. Designed the UI using Bootstrap, mostly inline.
-2. Ensured all elements were aligned correctly and applied spacing.
+1. **Routes and Controllers**:
+    - Defined routes for admin and author operations in `web.php`, ensuring clear separation of concerns.
+    - for admin created controllers (`UserController`, `PostController`) to manage users and posts for both admin and author roles.
+    - for author created `PostController` to manage only author owned posts.
+    - Implemented CRUD operations with validation, ensuring that admins could manage all users and posts, while authors could only manage their own posts.
+    - Incorporated role-based access control into the controllers to enforce permissions.
+    - Updated routing after registration and login to redirect the user to the correct dashboard depending on their role.
+2. **Blade Views**:
+    - Developed a unified layout for the admin panel using Bootstrap’s dashboard template, with adaptations for the author panel.
+    - Created admin and author dashboards and nav bars.
+    - Created admin and author views for listing, showing, creating, editing, and deleting users and blog posts.
+    - Updated existing Login and Registration views for consistency with styling and layout.
+    - Ensured the design was responsive and user-friendly, maintaining consistency across both admin and author panels.
 
 ### Testing and Debugging
 
 1. Thoroughly tested all features, including edge cases like multiple rapid clicks to the like button.
 2. Fixed bugs and ensured the application is functional.
 
-## Project Challenges and Difficulties
+## Challenges and Difficulties
 
-While working on the Laravel blog project, I experienced a few challenges.
-
-### 1. Setting up the environment
-
-Setting up the Laravel environment and configuring all dependencies was new to me and I had a few hurdles along the way as the incorrect versions were installed. I also had the incorrect extensions configured and my INI file kept disappearing. I had to configure it took some time but I eventually found a fix for the problem in an online forum.
-
-### 2. Back button behaviour
-
-The back button's behaviour was initially problematic after performing like/unlike actions. Using `history.back()` sometimes required multiple clicks due to page reloads and clicking multiple times gave a 500 network error. I ended up simplifying it to redirect to the index view instead. However, this meant that the edit view was taking the user back to the index and not the post. Eventually it just clicked, I realised I had done a similar behaviour already elsewhere to point to a specific id, and could do the same here.
-
-### 3. Implementing a new feature
-
-The most difficult part was taking everything I had learned and trying to implement it in a new feature. This was the most challenging and time consuming part, but I think it helped me to learn and understand the steps better. However, I don't think I would have been able to implement something more complex. It was more trying to replicate the same functionality with a new feature, and yet it was still challenging. In the end it was worth spending the time trying the bonus feature as I think it helped me to review what I had learned.
-
-## Extra Feature for Bonus Points
-
-### Like/Unlike a Post
-
-I created an extra feature to enhance the functionality of the blog project. I implemented functionality where a user can click a button to like (increments the total number of likes) or unlike (decriments the total number of likes) a blog post. The total number of likes for a post is displayed in the index view and the show view, allowing the user to see the popularity of the posts. Furthermore, the number of posts is saved to the database posts table, where I added a new column called "likes".
-
-This feature is not without its limitations and issues. For example, as there is no authentication in the app as yet, a user is able to like or dislike a post as many times as they want. Additionally, it would be ideal for the same like button to change to "unlike" when a post is already liked and vice versa, instead of having separate like and unlike buttons. However, once authentication is implemented in the future, I may be able to further enhance this feature to limit a user to like/unlike a particular post only once.
+1. **Setting Up MongoDB**:
+    - Getting MongoDB to work with Laravel took longer than expected. I ran into some connection issues but eventually found the solution after digging through forums.
+2. **Role-Based Access Control**:
+    - Implementing roles for admins and authors was tricky. I had to carefully ensure that admins had full control, while authors could only manage their own content. There were a lot of steps needed in different places which because confusing but I eventually got there, the request errors from Laravel were helpful.
+3. **Password Hashing Mishap**:
+    - When working on the user update logic, I struggled with password hashing due to a small validation mistake. It took a while to spot, but once fixed, the everything worked smoothly.
+4. **Design Consistency**:
+    - Keeping the design consistent across all the blade views was time consuming and challenging. It required balancing different needs of each user while ensuring everything looked cohesive.
+5. **Cross-Functionality Bugs**:
+    - Adapting features from the admin panel to the author panel led to some unexpected bugs. Sorting these out was a bit stressful, but it improved my debugging skills. Most of the time it was just due to fogetting to update a route somethwhere from admin to author.
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
