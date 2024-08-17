@@ -16,23 +16,11 @@
 
 To set up this project, follow these steps:
 
-1. **Install MongoDB (if not done so already)**:
-
-    - Ensure MongoDB is installed and running on your machine
-    - Install PHP extension for MongoDB (mac/linux)
-        ```bash
-        sudo pecl install mongodb
-        ```
-    - Install MongoDB Library for Laravel
-        ```bash
-        composer require mongodb/laravel-mongodb
-        ```
-
-2. **Clone the Repository**:
+1. **Clone the Repository**:
 
     - Clone the repository from GitHub or download files
 
-3. **Install Dependencies and Compile Frontend Assets**:
+2. **Install Dependencies and Compile Frontend Assets**:
 
     - Install all necessary backend dependencies:
         ```bash
@@ -41,7 +29,21 @@ To set up this project, follow these steps:
     - Install and compile frontend assets:
         ```bash
         npm install
+        ```
+        ```bash
         npm run dev
+        ```
+
+3. **Install MongoDB**:
+
+    - Ensure MongoDB is installed and running on your machine
+    - Install PHP extension for MongoDB (for macOS/Linux):
+        ```bash
+        sudo pecl install mongodb
+        ```
+    - Install MongoDB Library for Laravel:
+        ```bash
+        composer require mongodb/laravel-mongodb
         ```
 
 4. **Configure the Database**:
