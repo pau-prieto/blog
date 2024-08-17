@@ -25,7 +25,7 @@
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $user->name }}" minlength="3" maxlength="30" required>
                 @error('name')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        <strong>{{ $message }}</strong>
                     </div>
                 @enderror
             </div>
@@ -35,7 +35,7 @@
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $user->email }}" maxlength="50" required>
                 @error('email')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        <strong>{{ $message }}</strong>
                     </div>
                 @enderror
             </div>
@@ -45,7 +45,7 @@
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" minlength="8">
                 @error('password')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        <strong>{{ $message }}</strong>
                     </div>
                 @enderror
             </div>
@@ -55,7 +55,7 @@
                 <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" minlength="8">
                 @error('password_confirmation')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        <strong>{{ $message }}</strong>
                     </div>
                 @enderror
             </div>
@@ -69,7 +69,7 @@
                 </select>
                 @error('role')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        <strong>{{ $message }}</strong>
                     </div>
                 @enderror
             </div>

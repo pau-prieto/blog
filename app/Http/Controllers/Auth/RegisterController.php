@@ -29,7 +29,19 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin':
+                return '/admin/dashboard';
+            case 'author':
+                return '/author/dashboard';
+            default:
+                return '/dashboard';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -50,10 +62,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'min:3', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'string', 'in:author']
+            'role' => ['required', 'string', 'in:author'] // Can add user role here when implemented
         ]);
     }
 
@@ -65,17 +77,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $role = 'user';
-
-        if (Auth::check() && Auth::user()->role == 'admin') {
-            $role = $data['role'];
-        }
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => $role,
+            'role' => $data['role'], // Role selected in the register form
         ]);
     }
 }
