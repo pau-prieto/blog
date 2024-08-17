@@ -14,7 +14,111 @@
 -   **Unit Coordinator:** Muhammad Ibrahim
 -   **Assessment:** Assessment 2
 
-## Approach
+## Project Setup Instructions
+
+To set up this project, follow these steps:
+
+1. **Install MongoDB (if not done so already)**:
+
+    - Ensure MongoDB is installed and running on your machine
+    - Install PHP extension for MongoDB (mac/linux)
+        ```bash
+        sudo pecl install mongodb
+        ```
+    - Install MongoDB Library for Laravel
+        ```bash
+        composer require mongodb/laravel-mongodb
+        ```
+
+2. **Clone the Repository**:
+
+    - Clone the repository from GitHub or download files
+
+3. **Install Dependencies and Compile Frontend Assets**:
+
+    - Install all necessary backend dependencies:
+        ```bash
+        composer install
+        ```
+    - Install and compile frontend assets:
+        ```bash
+        npm install
+        npm run dev
+        ```
+
+4. **Configure the Database**:
+
+    - Copy the `.env.example` file to `.env`:
+        ```bash
+        cp .env.example .env
+        ```
+    - Ensure the `.env` file is configured to use MongoDB
+
+5. **Run Migrations**:
+
+    - Create the necessary database tables by running:
+        ```bash
+        php artisan migrate
+        ```
+
+6. **Seed the Database**:
+
+    - Seed the database with an initial admin user and sample posts:
+        ```bash
+        php artisan db:seed
+        ```
+    - Note: The seeded admin user credentials are `admin@example.com` with the password `password`.
+
+7. **Run the Application**:
+
+    - Start the development server:
+
+        ```bash
+        php artisan serve
+        ```
+
+    - The application will be accessible at `http://127.0.0.1:8000`.
+
+## Usage Instructions
+
+To use this project, follow these steps:
+
+1. **Register a New Author**:
+
+    - Navigate to `http://127.0.0.1:8000/register` to create a new author account.
+
+2. **Log In**:
+
+    - If you seeded an admin, login using the admin credentials (`admin@example.com`, `password`) at `http://127.0.0.1:8000/login`
+    - After registering or seeding as an author, you can log in with their credentials.
+
+3. **Author Panel:**
+
+    - Authors can log in using their credentials provided during seeding OR during registration at `http://127.0.0.1:8000/register`.
+    - Manage their own posts through the author panel.
+
+4. **Manage Posts**:
+
+    - Use the Manage Posts dashboard to view, create, edit, or delete blog posts. Admins can manage all posts, while authors can only manage their own.
+    - Users can create a new post by using the "Create Post" button on the top right corner of the Posts index view.
+
+5. **User Management (Admins Only)**:
+
+    - Admins can view, create, edit, and delete user accounts through the admin panel.
+    - Admins can create new users by clicking on the "Create User" button on the top right corner of the User index view.
+
+6. **Middleware**:
+    - `AdminMiddleware` allows admins to access the following secure routes:
+        - `http://127.0.0.1:8000/admin/dashboard`
+        - `http://127.0.0.1:8000/admin/posts`
+        - `http://127.0.0.1:8000/admin/users`
+        - From there you can access other blade views specific to admins for managing posts and users (i.e., create, show, edit, delete)
+    - `AuthorMiddleware` allows admins to access the following secure routes:
+        - `http://127.0.0.1:8000/author/dashboard`
+        - `http://127.0.0.1:8000/author/posts`
+        - From there you can access other blade views specific to author for managing their own posts (i.e., create, show, edit, delete)
+
+## Development Approach
 
 ### Setup and Initialisation
 
