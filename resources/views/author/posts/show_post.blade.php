@@ -1,22 +1,38 @@
 @extends('layouts.author')
 
 @section('content')
-    <div class="mx-auto" style="max-width: 800px; padding: 20px;">
-        <a href="{{ route('author.posts.index') }}" class="nav-link">Back</a>
-        <h1 class="mb-4 text-center" style="font-family: 'Times New Roman', serif; font-size: 42px; font-weight: 400;">Blog Post Details</h1>
-        <h3 class="font-weight-bold">{{ $post->title }}</h3>
-        <p>Post ID: {{ $post->id }}</p>
-        <p>{{ $post->content }}</p>
-        <hr>
-    </div>
-    <div class="mt-4 d-flex justify-content-between mx-auto" style="max-width: 800px;">
-        <div class="d-flex">
-            <a href="{{ route('author.posts.edit', $post->id) }}" class="btn mx-3" style="background-color: #a6e7a6">Edit</a>
-            <form action="{{ route('author.posts.destroy', $post->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn mx-3" style="background-color: #f596a9">Delete</button>
-            </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card mt-4">
+                <div class="card-header text-center">
+                    <h1>{{ $post->title }}</h1>
+                </div>
+
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="created-at" class="form-label"><strong>Date created</strong></label>
+                        <p id="created-at">{{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updated-at" class="form-label"><strong>Date updated</strong></label>
+                        <p id="updated-at">{{ \Carbon\Carbon::parse($post->updated_at)->format('d M, Y') }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label"><strong>Content</strong></label>
+                        <p id="content">{{ $post->content }}</p>
+                    </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{{ route('author.posts.index') }}" class="btn btn-secondary">Back</a>
+                    <div class="d-flex">
+                        <a href="{{ route('author.posts.edit', $post->id) }}" class="btn btn-primary me-2">Edit</a>
+                        <a href="{{ route('author.posts.delete', $post->id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 @endsection

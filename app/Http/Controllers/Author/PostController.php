@@ -90,6 +90,15 @@ class PostController extends Controller
     }
 
     /**
+     * Display the confirmation page for deleting the specified user.
+     */
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('author.posts.delete_post', compact('post'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Post $post)

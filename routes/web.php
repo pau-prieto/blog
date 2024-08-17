@@ -44,6 +44,7 @@ Route::group(['middleware' => [AuthorMiddleware::class]], function () {
             'update' => 'author.posts.update',
             'destroy' => 'author.posts.destroy',
         ]);
+        Route::get('/posts/{post}/delete', [AuthorPostController::class, 'delete'])->name('author.posts.delete');
     });
 });
 
