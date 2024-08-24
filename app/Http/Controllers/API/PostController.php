@@ -15,4 +15,13 @@ class PostController extends Controller
             'message' => 'success',
         ], 200);
     }
+
+    public function show(Post $id)
+    {
+        $posts = Post::all($id);
+        return response()->json([
+            'data' => $id,
+            'message' => 'success',
+        ], 200);
+    }
 }
