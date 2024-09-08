@@ -2,7 +2,7 @@
 
 ## Enhanced Blog Application with Authentication and Admin Panel
 
-[Paula's blog-Enhanced version](https://github.com/pau-prieto/blog/tree/feature/auth-admin-panel)
+[Paula's blog-Enhanced version](https://github.com/pau-prieto/blog-backend-laravel/tree/feature/sanctum-api-endpoints)
 
 ## Student Information
 
