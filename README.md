@@ -1,8 +1,8 @@
 # My Laravel Blog Project
 
-## Enhanced Blog Application with Authentication and Admin Panel
+## Enhanced Blog Application with API Integration
 
-[Paula's blog-Enhanced version](https://github.com/pau-prieto/blog-backend-laravel/tree/feature/sanctum-api-endpoints)
+[Paula's blog-API integration version](https://github.com/pau-prieto/blog-backend-laravel/tree/feature/sanctum-api-endpoints)
 
 ## Student Information
 
@@ -10,7 +10,7 @@
 -   **Student ID:** 220111946
 -   **Course:** COSC560 Advanced Web Development
 -   **Unit Coordinator:** Muhammad Ibrahim
--   **Assessment:** Assessment 2
+-   **Assessment:** Assessment 3
 
 ## Project Setup Instructions
 
