@@ -11,7 +11,7 @@
 <body>
 
 <header class="navbar bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">BLOG</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="http://localhost:3000">BLOG</a>
   @if (Route::has('login'))
       <div class="ms-auto">
           <a class="nav-link text-white me-3" href="{{ route('login') }}">Login</a>
