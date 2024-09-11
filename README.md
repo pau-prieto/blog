@@ -89,33 +89,29 @@ The API provides two main endpoints for accessing blog posts.
 
 These endpoints can be used with any frontend, including the React app.
 
-**Get All Posts**:
-`GET /api/posts`
-_Returns a list of all blog posts in the application._
+-   **Get All Posts**:
 
-**Get Single Post by ID**:
-`GET /api/posts/{id}`
-_Returns the details of a single blog post based on its ID._
+    -   `GET /api/posts`
+    -   _Returns a list of all blog posts in the application._
+
+-   **Get Single Post by ID**:
+    -   `GET /api/posts/{id}`
+    -   _Returns the details of a single blog post based on its ID._
 
 ### Example: Fetch API in React
 
-In the React app, you can use the fetch API blog posts from the Laravel API:
-
+-   In the React app, you can use the fetch API blog posts from the Laravel API:
     ```javascript
     const API_BASE_URL = "http://localhost:8000/api";
     // Fetch all posts
-    fetch(`${API_BASE_URL}/posts`)
-        .then(response => response.json())
+    fetch(`${API_BASE_URL}/posts`).then((response) => response.json());
     // Fetch a specific post by ID
-    fetch(`${API_BASE_URL}/posts/${id}`)
-        .then(response => response.json())
+    fetch(`${API_BASE_URL}/posts/${id}`).then((response) => response.json());
     ```
 
 You can find the frontend React app [here](https://github.com/pau-prieto/blog-app-react) with detailed setup instructions.
 
 ## Development Approach
-
-### Setup and Initialisation
 
 1. **Project Setup**:
 
