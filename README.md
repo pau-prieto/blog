@@ -1,4 +1,4 @@
-# My Laravel Blog Project
+# Laravel Blog Project
 
 ## Enhanced Blog Application with API Integration
 
