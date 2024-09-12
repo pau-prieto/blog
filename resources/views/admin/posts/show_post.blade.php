@@ -13,7 +13,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span><strong>Post ID:</strong></span>
-                            <span style="margin-left: 20px;">{{ $post->_id }}</span>
+                            <span style="margin-left: 20px;">{{ $post->id }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span><strong>User ID:</strong></span>
@@ -36,8 +36,8 @@
                 <div class="card-footer d-flex justify-content-between">
                     <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Back</a>
                     <div class="d-flex">
-                        <a href="{{ route('admin.posts.edit', $post->_id) }}" class="btn btn-primary me-2">Edit</a>
-                        <a href="{{ route('admin.posts.delete', $post->_id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary me-2">Edit</a>
+                        <a href="{{ route('admin.posts.delete', $post->id) }}" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
